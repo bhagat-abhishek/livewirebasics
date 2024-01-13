@@ -16,7 +16,45 @@ class TaskIndex extends Component
 
     public function mount()
     {
+        // $this->tasks = Task::with('users')->get();
+    }
+
+    public function hydrate()
+    {
+        // dd("OK");
+    }
+
+    public function boot()
+    {
         $this->tasks = Task::with('users')->get();
+    }
+
+    public function updating()
+    {
+        // 
+    }
+
+    public function updated()
+    {
+        // 
+    }
+
+    public function rendering($view, $data)
+    {
+        // $data['name'] = "Abby";
+        // dd($data);
+    }
+
+    public function rendered($view, $html)
+    {
+        // dd($html);
+    }
+
+    public function dehydrate()
+    {
+        // $this->tasks = $this->tasks->toArray();
+
+        // dd($this->tasks);
     }
 
     public function save()
@@ -29,6 +67,8 @@ class TaskIndex extends Component
         ]);
 
         session()->flash('message', 'Task Successfully Created');
+
+        $this->dispatch('task-updated');
 
         return $this->redirect(route('tasks'));
     }
