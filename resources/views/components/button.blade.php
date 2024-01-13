@@ -2,3 +2,7 @@
     type="submit" wire:click="{{ $click }}">
     {{ $button }}
 </button>
+
+<div wire:loading>
+    <x-spinner />
+</div>
